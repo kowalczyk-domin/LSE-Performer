@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="rOQosOnGjEOm1KD0IxbiaA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="ece5279f-6dea-4d88-a7b6-8b5b25aa49f5" DesignTimeRectangle="245, 309, 1430, 75" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='breadcrumb' tag='DIV' /&gt;" Guid="6a7a3c6c-0d2c-43d6-9f07-eaee23348054" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="68d845f9940abbbed75aaf22debb4cae.png" xmlns="">0dpxCpKG7HkOS9iIFP3_zbg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

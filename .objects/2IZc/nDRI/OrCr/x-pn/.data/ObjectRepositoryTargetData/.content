@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="x8g8FoRZyU6Cdd6y2704oQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="8eM-fbwf3U6k7hOHmtTclA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="9404e460-1aff-4d43-892f-ceb2ecf86a21" DesignTimeRectangle="307, 499, 856, 18" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl parentid='global-search' tag='A' type='' class='tidm-and-description black-link' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' /&gt;" Guid="322fbe8d-a5de-4d97-a1b6-a02d4b6f78f7" ScopeSelectorArgument="&lt;html app='msedge.exe' title='CNA - Search | London Stock Exchange' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-      <TargetAnchorable.Anchors>
-        <scg:List x:TypeArguments="ITarget" Capacity="4">
-          <Target DesignTimeRectangle="307, 431, 856, 91" FuzzySelectorArgument="&lt;webctrl class='item-content' parentid='global-search' tag='DIV' type='' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Equity&amp;#xA;CENTRICA PLC&amp;#xA;CNACENTRICA PLC ORD 6 14/81P' /&gt;" Guid="b79235c0-2cb1-4c9e-891e-88786b9d917c" SearchSteps="FuzzySelector" />
-        </scg:List>
-      </TargetAnchorable.Anchors>
-      <imageRef attrName="InformativeScreenshot" originalValue="e596ff2c46e6e935b3ee44d7a4fea008.png" xmlns="">0qrEJyWw4ckact1y0LKP-Bw</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="4f303da7-dea6-4e21-8e93-03f460bcdc61" DesignTimeRectangle="245, 575, 1070, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='A' class='*tidm-and-description*' /&gt;&lt;webctrl tag='SPAN' class='*instrument-uppercase*' /&gt;" Guid="76627c99-e79b-430c-87ae-a07fa3d45303" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="1e9a470d74bd0fd737e80030b768f57e.png" xmlns="">0-ileszQka0mOTPm5FcJLeg</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">GetText</x:String>
   </ObjectRepositoryTargetData.Data>

@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Check Instrument Page Loaded",
+  "Type": "Element",
+  "Id": "BOmWhIn6qEKgbxMmJQiv_w",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/BOmWhIn6qEKgbxMmJQiv_w",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/K8QfM3cse0G3TTUNVya8qw",
+  "Created": "2025-12-25T11:29:18.8267188Z",
+  "Updated": "2025-12-25T11:29:18.8267188Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

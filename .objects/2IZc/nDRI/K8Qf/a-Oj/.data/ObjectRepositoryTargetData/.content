@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="8vpMIpvmIEGLiKlIWHgFFg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="6b20b386-e4ed-400d-9e5c-5d669a28d3c7" DesignTimeRectangle="245, 939, 117, 62" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='price-tag' parentid='ticker' tag='SPAN' /&gt;" Guid="781f0d5f-ef9b-4389-ab79-60043bc167b1" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="4d50c13c3cc912b2c082c19a546b11be.png" xmlns="">0GfP4Zp6XRkyg6Bza3t_ebA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

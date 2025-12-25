@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="I_xSFIUgbkmwj8A0_G4nfA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="cd2195ab-fbf3-40ea-af1b-b76d092af969" DesignTimeRectangle="245, 939, 117, 62" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl class='price-tag' parentid='ticker' tag='SPAN' type='' aaname='97.26 ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='97.26' /&gt;" Guid="248c8b3e-d749-4542-b42e-85046e224c4f" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="cd2195ab-fbf3-40ea-af1b-b76d092af969" DesignTimeRectangle="245, 923, 318, 17" FuzzySelectorArgument="&lt;webctrl aaname='Price ' parentid='ticker' tag='DIV' type='' class='currency-label small-font-size item-label' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Price (GBX)' /&gt;" Guid="61c4be8c-b0dc-464a-9d67-84c379affc7a" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="e87bdb3c6a51442f4306d8219ccd2413.png" xmlns="">0wsSm8_trMke3TGLj6UGk_g</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

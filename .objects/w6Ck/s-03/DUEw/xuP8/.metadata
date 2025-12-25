@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Check Stock Price Element Exists",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "xuP8FbzpdEKdRvADyZ_dHw",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/xuP8FbzpdEKdRvADyZ_dHw",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/DUEwmQZ0wkKejltWjLpmng",
+  "Created": "2025-12-25T11:35:17.2524026Z",
+  "Updated": "2025-12-25T11:35:17.2524026Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="srzFXoVTVUOY2OKzjZy-2g" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="0089c05d-9fba-47e1-8c9a-a3ef6de22595" DesignTimeRectangle="1335, 592, 340, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='bold-font-weight' parentid='global-search' tag='A' /&gt;" Guid="2922eb10-d19c-4533-9a0e-76018a57d369" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="a1f903331b953667e576a1c574f74eca.png" xmlns="">0xVltA84cOU-b-snYxyO-oQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

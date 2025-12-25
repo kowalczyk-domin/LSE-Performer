@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryScreenData ContentHash="tn0xvD7ynkWF_5MLL-_ZHg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryScreenData.Data>
+    <TargetApp x:Key="TargetApp" Area="0, 0, 0, 0" Selector="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" Url="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" />
+  </ObjectRepositoryScreenData.Data>
+</ObjectRepositoryScreenData>
