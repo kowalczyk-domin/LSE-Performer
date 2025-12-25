@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Focus Search Input",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "QtDOoWejukSgWq0b4oK-8g",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/QtDOoWejukSgWq0b4oK-8g",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/V7-Yn_uWeU-HmWMCcwgeBg",
+  "Created": "2025-12-25T06:01:41.4301475Z",
+  "Updated": "2025-12-25T06:01:41.4301475Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

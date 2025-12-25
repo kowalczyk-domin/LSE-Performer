@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryScreenData ContentHash="YTNvMhjH30KBNRmKji13Tw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryScreenData.Data>
+    <TargetApp x:Key="TargetApp" Area="0, 0, 0, 0" Selector="&lt;html app='msedge.exe' title='London Stock Exchange homepage | London Stock Exchange' /&gt;" Url="londonstockexchange.com" />
+  </ObjectRepositoryScreenData.Data>
+</ObjectRepositoryScreenData>

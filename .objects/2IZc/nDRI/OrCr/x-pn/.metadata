@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Extract First Result Stock Code",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "x-pncRL58kiYkwxXZS3MzA",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/x-pncRL58kiYkwxXZS3MzA",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/OrCrC5tHf0ChkF0wYh4Tow",
+  "Created": "2025-12-25T06:48:04.1486582Z",
+  "Updated": "2025-12-25T06:48:04.1486582Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

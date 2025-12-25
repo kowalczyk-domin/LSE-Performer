@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="AEVl57naL0iwoVJYPpoXKQ" Reference="DiCvZXmOrEuxFFYhehoQIw/Cs5WZAwCQ06aw3ju-mYHTQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="a300b296-db34-4cef-b8db-4dc11c484c92" DesignTimeRectangle="307, 312, 179, 52" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;app-handshake&amp;gt;div&amp;gt;app-page-content&amp;gt;app-search&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='global-search' tag='DIV' /&gt;" Guid="625cd118-106f-4eab-92fb-19dab5284fc5" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" SemanticSelectorArgument="Text indicating the total number of search results and how many are currently displayed" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="be08883cb1cd3201c18738ab200d9faf.png" xmlns="">0bgLx2KyzY0umhkRzTZatog</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,0 +1,14 @@
+﻿{
+  "Name": "INPUT quick-search-input",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "JZgylZKFLkGrg8nUZMNa2A",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/V7-Yn_uWeU-HmWMCcwgeBg",
+  "Created": "2025-12-25T06:15:04.7664622Z",
+  "Updated": "2025-12-25T06:15:04.7664622Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

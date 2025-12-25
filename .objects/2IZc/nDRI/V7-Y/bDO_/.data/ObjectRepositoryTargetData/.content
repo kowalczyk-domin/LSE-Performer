@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="qNOoO8Ub5UOyl4px9D4NbQ" Reference="DiCvZXmOrEuxFFYhehoQIw/bDO_I9F37k-O-Gx2ke-wWg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com" CVScreenId="d571eec3-7ba0-4907-8ea7-61bbe0401e11" CvElementArea="1238, 826, 504, 54" CvTextArea="1421, 845, 134, 17" CvTextArgument="Accept all cookies" CvType="Button" DesignTimeRectangle="1240, 828, 500, 51" ElementType="Button" ElementVisibilityArgument="[UiPath.UIAutomationNext.Enums.NElementVisibility.Visible]" FullSelectorArgument="&lt;webctrl id='onetrust-accept-btn-handler' tag='BUTTON' /&gt;" Guid="7312ae81-5160-478e-934b-a6a40ca3bd74" SearchSteps="Selector" Version="V6" WaitForReadyArgument="[UiPath.UIAutomationNext.Enums.NWaitForReady.None]">
+      <imageRef attrName="InformativeScreenshot" originalValue="3a8b25802b919ce026ec970445db1468.png" xmlns="">0kJKJldes70OMglg7Ei6nvg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

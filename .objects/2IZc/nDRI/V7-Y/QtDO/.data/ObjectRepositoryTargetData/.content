@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="RYLxjBVpNEG2Vjdj2MPVqA" Reference="DiCvZXmOrEuxFFYhehoQIw/QtDOoWejukSgWq0b4oK-8g" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com" CVScreenId="d2167417-45a2-4a4b-acc7-e5155fd83605" CvElementArea="494, 107, 338, 42" CvType="InputBox" DesignTimeRectangle="495, 153, 336, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;" Guid="f27a957e-4fc5-406b-8d49-bba5fe67cdc6" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

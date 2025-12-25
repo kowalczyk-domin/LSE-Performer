@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="v9-c-qsxX0qW866mDOQBEg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="0b54909e-82b7-4354-8a3a-a8ae6d2aa856" DesignTimeRectangle="307, 474, 153, 20" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl parentid='global-search' tag='A' type='' class='bold-font-weight instrument-uppercase instrument-name-link' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' /&gt;" Guid="3bb28b04-a7a7-447f-b2d6-b65846b4c44d" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="307, 430, 1144, 150" FuzzySelectorArgument="&lt;webctrl class='item-separator' parentid='global-search' tag='DIV' type='' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Equity&amp;#xA;VODAFONE GROUP PLC&amp;#xA;VODVODAFONE GROUP PLC ORD USD0.20 20/21&amp;#xA;Explore more about this Instrument&amp;#xA;97.26GBX0.31%Sector:Telecommunications Service ProvidersInstruments:33Market cap: £22,839.14m' /&gt;" Guid="b311eb4e-46e9-4c75-b548-a831ce28ea81" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="dd8b68e39828caf2e352e8b7c049a72d.png" xmlns="">02LsxCtmWV0qwa_zBfwplUg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
