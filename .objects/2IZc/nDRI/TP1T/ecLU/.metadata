@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Equity LLOYDS BANKING G…",
+  "Type": "Element",
+  "Id": "ecLU_mt_REKmzyZG87xayA",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/ecLU_mt_REKmzyZG87xayA",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/TP1Tyga92Ue9LPlUcWD8ow",
+  "Created": "2025-12-25T16:52:08.4284826Z",
+  "Updated": "2025-12-25T16:52:08.4284826Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

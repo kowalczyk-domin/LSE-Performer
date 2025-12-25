@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="KV3LOz7_qU2bUsnY5WSZPA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" DesignTimeRectangle="245, 547, 1430, 114" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='*item-container*' /&gt;" Guid="737d9d4f-a9ed-4f87-ab7f-c9dee47a0856" ScopeSelectorArgument="&lt;html app='msedge.exe' title='LLOY - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="03b69fdec5194057c656fd56976f7b11.png" xmlns="">0nI0OZpkuB0mtNlIqIOU-Mg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
