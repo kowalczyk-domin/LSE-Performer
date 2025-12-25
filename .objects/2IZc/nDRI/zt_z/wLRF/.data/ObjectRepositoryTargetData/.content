@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="5eIvxF9B_kOaRVR4CIj0YA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="31569476-f492-4603-8286-7b8d130e8291" DesignTimeRectangle="245, 490, 1430, 114" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='*item-container*' /&gt;" Guid="472b6e4a-d103-4b7d-a05f-f2c4ed3d3bc7" ScopeSelectorArgument="&lt;html app='msedge.exe' title='hsba - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="7a903734d811016f4c87b6e9a5ecd4c2.png" xmlns="">02IgDXqcBckyIkEH-QZ6hwg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

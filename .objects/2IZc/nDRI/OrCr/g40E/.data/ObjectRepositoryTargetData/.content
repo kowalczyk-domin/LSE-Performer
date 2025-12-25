@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="vdOOvEVy50i2nx32qkyd5A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="jfVPJ3ZE_U2nUelvLoWAnA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="7a018f7a-2850-430b-85c2-c871953b7d4e" DesignTimeRectangle="245, 575, 1070, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='A' class='*tidm-and-description*' /&gt;" Guid="6dca38bd-7c82-422a-a96d-8d8e33eb5548" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
-      <imageRef attrName="InformativeScreenshot" originalValue="c1df22edfb258f9b892207bf05e89c3b.png" xmlns="">0qDLa8eWwhUyU0ng5q4q4Hg</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="7d6283c7-68bc-4011-a178-1760de2f6c49" DesignTimeRectangle="245, 632, 1070, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='global-search' tag='A' type='' class='tidm-and-description black-link' /&gt;" Guid="9bd09da8-659b-48ed-9fd4-5bdfe0604de3" ScopeSelectorArgument="&lt;html app='msedge.exe' title='BT.A - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="ac78b98b8afa18216de305e0f6326345.png" xmlns="">0PnvK3GvpsUa_1W6CWqyBVw</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">GetText</x:String>
   </ObjectRepositoryTargetData.Data>

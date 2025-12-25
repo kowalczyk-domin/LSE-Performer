@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
     <x:Property Name="in_BrowserSession" Type="InArgument(ui:Browser)" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -52,6 +53,8 @@
       <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Numerics</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -118,9 +121,11 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="837.9999999999999,2384" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1473.2,2582.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="sourceRef" />
       <Variable x:TypeArguments="x:String" Name="stockCode" />
@@ -129,6 +134,7 @@
       <Variable x:TypeArguments="x:String" Name="firstResultCompanyData" />
       <Variable x:TypeArguments="x:String" Name="rawStockPrice" />
       <Variable x:TypeArguments="s:DateTime" Name="priceTimestampUtc" />
+      <Variable x:TypeArguments="x:String" Name="regExPrice" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -137,7 +143,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="620.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <Sequence DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="620.8,2108.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="620.8,2307.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -276,7 +282,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za techniczne pozyskanie aktualnej wartości instrumentu giełdowego na podstawie kodu akcji. Obejmuje nawigację, wyszukiwanie oraz ekstrakcję danych z serwisu giełdowego." DisplayName="Acquire Stock Data" sap:VirtualizedContainerService.HintSize="587.2,1701.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za techniczne pozyskanie aktualnej wartości instrumentu giełdowego na podstawie kodu akcji. Obejmuje nawigację, wyszukiwanie oraz ekstrakcję danych z serwisu giełdowego." DisplayName="Acquire Stock Data" sap:VirtualizedContainerService.HintSize="587.2,1900" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -284,28 +290,28 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu procesu pozyskiwania danych giełdowych dla aktualnej &#xA;transakcji." DisplayName="Log Stock Data Acquisition Start" sap:VirtualizedContainerService.HintSize="553.6,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;[PERFORMER] Acquiring stock data | StockCode=&quot; &amp; stockCode]">
+        <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu procesu pozyskiwania danych giełdowych dla aktualnej &#xA;transakcji." DisplayName="Log Stock Data Acquisition Start" sap:VirtualizedContainerService.HintSize="553.6,235.2" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;[PERFORMER] Acquiring stock data | StockCode=&quot; &amp; stockCode]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
-        <uix:NApplicationCard sap2010:Annotation.AnnotationText="Wykorzystanie wcześniej zainicjalizowanej sesji przeglądarki do wykonania operacji wyszukiwania oraz ekstrakcji danych giełdowych." AttachMode="SingleWindow" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.IfOpenedByAppBrowser]" DisplayName="Use Existing Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="553.6,1431.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InUiElement="[in_BrowserSession]" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V2" WindowResize="Maximize">
+        <uix:NApplicationCard sap2010:Annotation.AnnotationText="Wykorzystanie wcześniej zainicjalizowanej sesji przeglądarki do wykonania operacji wyszukiwania oraz ekstrakcji danych giełdowych." AttachMode="SingleWindow" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.IfOpenedByAppBrowser]" DisplayName="Use Existing Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="553.6,1512" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InUiElement="[in_BrowserSession]" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V2" WindowResize="Maximize">
           <uix:NApplicationCard.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="552,1264.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="552,1345.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="Kontener logiczny grupujący wszystkie operacje webowe wykonywane w ramach jednej sesji przeglądarki." DisplayName="Execute Stock Data Acquisition" sap:VirtualizedContainerService.HintSize="536,1592.0000000000002" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <Sequence sap2010:Annotation.AnnotationText="Kontener logiczny grupujący wszystkie operacje webowe wykonywane w ramach jednej sesji przeglądarki." DisplayName="Execute Stock Data Acquisition" sap:VirtualizedContainerService.HintSize="518.4,1285.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -313,7 +319,7 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wykrycie oraz zamknięcie banera cookies, jeżeli jest on wyświetlany, w celu odblokowania interfejsu strony." DisplayName="Handle Cookie Banner" sap:VirtualizedContainerService.HintSize="502.4,101.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wykrycie oraz zamknięcie banera cookies, jeżeli jest on wyświetlany, w celu odblokowania interfejsu strony." DisplayName="Handle Cookie Banner" sap:VirtualizedContainerService.HintSize="484.8,101.6" sap2010:WorkflowViewState.IdRef="Sequence_60">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -321,9 +327,9 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NCheckState sap2010:Annotation.AnnotationText="Sprawdzenie, czy baner cookies jest wyświetlany na stronie oraz podjęcie odpowiedniej akcji w celu odblokowania interfejsu użytkownika przed dalszym przetwarzaniem." DisplayName="Check Cookie Banner Presence" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,125" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
+                    <uix:NCheckState sap2010:Annotation.AnnotationText="Sprawdzenie, czy baner cookies jest wyświetlany na stronie oraz podjęcie odpowiedniej akcji w celu odblokowania interfejsu użytkownika przed dalszym przetwarzaniem." DisplayName="Check Cookie Banner Presence" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,125.6" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Timeout="2" Version="V5">
                       <uix:NCheckState.IfExists>
-                        <Sequence sap2010:Annotation.AnnotationText="Gałąź wykonywana w przypadku wykrycia banera cookies na stronie." DisplayName="Cookie Banner Detected" sap:VirtualizedContainerService.HintSize="450,56" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <Sequence sap2010:Annotation.AnnotationText="Gałąź wykonywana w przypadku wykrycia banera cookies na stronie." DisplayName="Cookie Banner Detected" sap:VirtualizedContainerService.HintSize="449.6,56" sap2010:WorkflowViewState.IdRef="Sequence_20">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -344,7 +350,7 @@
                         </Sequence>
                       </uix:NCheckState.IfExists>
                       <uix:NCheckState.IfNotExists>
-                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -365,18 +371,15 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NCheckState>
                   </Sequence>
-                  <Sequence sap2010:Annotation.AnnotationText="Wyszukanie instrumentu giełdowego na podstawie kodu akcji oraz nazwy spółki i przejście do strony właściwego instrumentu." DisplayName="Search Instrument" sap:VirtualizedContainerService.HintSize="502.4,101.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <Sequence sap2010:Annotation.AnnotationText="Wyszukanie instrumentu giełdowego na podstawie kodu akcji oraz nazwy spółki i przejście do strony właściwego instrumentu." DisplayName="Search Instrument   " sap:VirtualizedContainerService.HintSize="484.8,428.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Ustawienie fokusu na pole wyszukiwania instrumentów giełdowych w celu przygotowania do wprowadzenia kodu akcji." ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Focus Search Input" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,117.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
-                      <uix:NClick.Target>
-                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com" CVScreenId="8f899b48-8efb-48e3-9b1e-95b302107e5a" ContentHash="CQDWKdhiPEix0FahkoP0KQ" DesignTimeRectangle="1115, 97, 336, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;" Guid="64da4c8a-e112-45bb-a208-00e485c9785f" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                      </uix:NClick.Target>
+                    <If sap2010:Annotation.AnnotationText="Sprawdza, czy bieżąca transakcja nie jest pierwszym wyszukiwaniem&#xD;&#xA;instrumentu w ramach procesu. Na podstawie numeru transakcji&#xD;&#xA;określany jest kontekst wyszukiwania (strona główna lub strona wyników).&#xD;&#xA;" Condition="[in_TransactionNumber &gt; 1]" DisplayName="Check If Instrument Is Searched for the First Time" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="If_11">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -384,20 +387,74 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                    </uix:NClick>
-                    <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="Wprowadzenie kodu akcji do pola wyszukiwania w celu uruchomienia wyszukiwania instrumentów giełdowych." ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Enter Stock Code" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,117.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="Simulate" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Text="[stockCode]" Version="V5">
-                      <uix:NTypeInto.Target>
-                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com" CVScreenId="8f899b48-8efb-48e3-9b1e-95b302107e5a" ContentHash="CQDWKdhiPEix0FahkoP0KQ" DesignTimeRectangle="1115, 97, 336, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;" Guid="64da4c8a-e112-45bb-a208-00e485c9785f" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                      </uix:NTypeInto.Target>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </uix:NTypeInto>
-                    <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Zatwierdzenie wyszukiwania poprzez wysłanie klawisza Enter i przejście do strony wyników wyszukiwania." DisplayName="Submit Search" sap:VirtualizedContainerService.HintSize="451.2,117.6" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="enter" KeyModifiers="None" SpecialKey="True">
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,319.2" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Ustawienie fokusu na pole wyszukiwania instrumentów giełdowych w celu przygotowania do wprowadzenia kodu akcji." ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Focus Search Input (Result Page)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" ContentHash="5XRJPUJn606ANYmHsh8QwQ" DesignTimeRectangle="805, 185, 870, 63" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='search' tag='INPUT' /&gt;" Guid="c28529b5-24ed-4fa8-82f3-d39873a6ccfa" InformativeScreenshot="cc75ad50ff2a2e2617e06098ad58a3ca.png" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='hsbc - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NClick>
+                          <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="Wprowadza kod instrumentu giełdowego do pola wyszukiwania znajdującego się na stronie wyników wyszukiwania (result page). Ten krok wykonywany jest dla wszystkich kolejnych transakcji po pierwszym wyszukiwaniu." ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Enter Stock Code on Results Page Search" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,141.6" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="DebuggerApi" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Text="[stockCode]" Version="V5">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" ContentHash="vgoobNgpA0Gwez1VKPi39w" DesignTimeRectangle="805, 185, 870, 63" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='search' tag='INPUT' /&gt;" Guid="a86bc8e2-e721-45b2-9545-5556f92f5ef3" InformativeScreenshot="3e71de372b3861646881560d5cefba24.png" Reference="DiCvZXmOrEuxFFYhehoQIw/GtcuF2z0PEKMFfrqLxUP8A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NTypeInto.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NTypeInto>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,286.4" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Ustawienie fokusu na pole wyszukiwania instrumentów giełdowych w celu przygotowania do wprowadzenia kodu akcji." ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Focus Search Input" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" ContentHash="5XRJPUJn606ANYmHsh8QwQ" DesignTimeRectangle="805, 185, 870, 63" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='search' tag='INPUT' /&gt;" Guid="c28529b5-24ed-4fa8-82f3-d39873a6ccfa" InformativeScreenshot="cc75ad50ff2a2e2617e06098ad58a3ca.png" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='hsbc - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NClick>
+                          <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="Wprowadzenie kody firmy do pola wyszukiwania w celu uruchomienia wyszukiwania instrumentów giełdowych." ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Enter Stock Code" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="Simulate" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Text="[stockCode]" Version="V5">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com" CVScreenId="8f899b48-8efb-48e3-9b1e-95b302107e5a" ContentHash="CQDWKdhiPEix0FahkoP0KQ" DesignTimeRectangle="1115, 97, 336, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;" Guid="64da4c8a-e112-45bb-a208-00e485c9785f" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NTypeInto.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NTypeInto>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Zatwierdzenie wyszukiwania poprzez wysłanie klawisza Enter i przejście do strony wyników wyszukiwania." DisplayName="Submit Search" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="enter" KeyModifiers="None" SpecialKey="True">
                       <ui:SendHotkey.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8e91ddf7-ce07-4531-a9d0-64f038d70058" InformativeScreenshot="589dd2899084158826fd4e14ea46be4c" Selector="&lt;html app='msedge.exe' title='London Stock Exchange homepage | London Stock Exchange' /&gt;&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -416,147 +473,19 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:SendHotkey>
-                    <uix:NCheckState sap2010:Annotation.AnnotationText="Oczekiwanie na załadowanie strony wyników wyszukiwania po zatwierdzeniu zapytania." DisplayName="Wait For Search Results Page" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,530.4" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
-                      <uix:NCheckState.IfExists>
-                        <Sequence sap2010:Annotation.AnnotationText="Walidacja pierwszego wyniku wyszukiwania poprzez sprawdzenie zgodności kodu akcji oraz nazwy spółki z danymi transakcji. Sekwencja zapewnia, że dalsze przetwarzanie odbywa się wyłącznie dla właściwego instrumentu giełdowego." DisplayName="Validate First Search Result" sap:VirtualizedContainerService.HintSize="449.6,102.4" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <uix:NGetText sap2010:Annotation.AnnotationText="Pobranie nazwy spółki i kodu instrumentu z pierwszego wyniku listy wyszukiwania." DisplayName="Extract First Result Company Data" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,101.6" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[firstResultCompanyData]" Version="V5">
-                            <uix:NGetText.Target>
-                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="7a018f7a-2850-430b-85c2-c871953b7d4e" ContentHash="vdOOvEVy50i2nx32qkyd5A" DesignTimeRectangle="245, 575, 1070, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='A' class='*tidm-and-description*' /&gt;" Guid="6dca38bd-7c82-422a-a96d-8d8e33eb5548" InformativeScreenshot="c1df22edfb258f9b892207bf05e89c3b.png" Reference="DiCvZXmOrEuxFFYhehoQIw/g40EGppW90mJlT0icPIJUg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
-                            </uix:NGetText.Target>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </uix:NGetText>
-                          <If sap2010:Annotation.AnnotationText="Walidacja zgodności pierwszego wyniku wyszukiwania z danymi transakcji na podstawie kodu akcji oraz nazwy spółki." Condition="[firstResultCompanyData.ToLower.Contains(companyName.ToLower)]" DisplayName="Validate First Result Match" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="If_4">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,301.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Wybór instrumentu giełdowego spełniającego kryteria zgodności i przejście do jego strony szczegółowej." ClickType="Single" DisplayName="Explore more about this Instrument" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,241.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
-                                  <uix:NClick.Target>
-                                    <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="0089c05d-9fba-47e1-8c9a-a3ef6de22595" ContentHash="srzFXoVTVUOY2OKzjZy-2g" DesignTimeRectangle="1335, 592, 340, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='bold-font-weight' parentid='global-search' tag='A' /&gt;" Guid="2922eb10-d19c-4533-9a0e-76018a57d369" InformativeScreenshot="a1f903331b953667e576a1c574f74eca.png" Reference="DiCvZXmOrEuxFFYhehoQIw/M6ZeEdKYG02skcyqCqk0Ag" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                                  </uix:NClick.Target>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </uix:NClick>
-                              </Sequence>
-                            </If.Then>
-                            <If.Else>
-                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,251.2" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <Throw sap2010:Annotation.AnnotationText="Pierwszy wynik wyszukiwania nie spełnia kryteriów zgodności z danymi transakcji. Sytuacja traktowana jako błąd techniczny umożliwiający ponowną próbę przetwarzania." DisplayName="First Search Result Does Not Match Transaction" Exception="[New SystemException(&quot;First search result does not match transaction data. &quot; &amp;&#xD;&#xA;  &quot;Expected StockCode=&quot; &amp; stockCode &amp;&#xD;&#xA;  &quot;, CompanyName=&quot; &amp; companyName &amp;&#xD;&#xA;  &quot;; Found=&quot; &amp; firstResultCompanyData&#xD;&#xA;)]" sap:VirtualizedContainerService.HintSize="416,191.2" sap2010:WorkflowViewState.IdRef="Throw_2">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </Throw>
-                              </Sequence>
-                            </If.Else>
-                          </If>
-                        </Sequence>
-                      </uix:NCheckState.IfExists>
-                      <uix:NCheckState.IfNotExists>
-                        <Sequence sap2010:Annotation.AnnotationText="Brak pierwszego wyniku wyszukiwania po załadowaniu strony wyników. Sytuacja traktowana jako błąd techniczny interfejsu użytkownika umożliwiający ponowną próbę przetwarzania w ramach mechanizmu retry." DisplayName="First Search Result Not Found" sap:VirtualizedContainerService.HintSize="449.6,102.4" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Throw sap2010:Annotation.AnnotationText="Brak pierwszego wyniku wyszukiwania po załadowaniu strony wyników. Sytuacja traktowana jako błąd techniczny interfejsu użytkownika umożliwiający ponowną próbę w ramach mechanizmu retry." DisplayName="First Search Result Not Found" Exception="[New SystemException(&quot;First search result was not found on the results page for StockCode=&quot; &amp; stockCode &amp;&#xD;&#xA;&quot; and CompanyName=&quot; &amp; companyName&#xD;&#xA;)]" sap:VirtualizedContainerService.HintSize="416,207.2" sap2010:WorkflowViewState.IdRef="Throw_3">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Throw>
-                        </Sequence>
-                      </uix:NCheckState.IfNotExists>
-                      <uix:NCheckState.Target>
-                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="a300b296-db34-4cef-b8db-4dc11c484c92" ContentHash="AEVl57naL0iwoVJYPpoXKQ" DesignTimeRectangle="307, 312, 179, 52" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;app-handshake&amp;gt;div&amp;gt;app-page-content&amp;gt;app-search&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='global-search' tag='DIV' /&gt;" Guid="625cd118-106f-4eab-92fb-19dab5284fc5" InformativeScreenshot="be08883cb1cd3201c18738ab200d9faf.png" Reference="DiCvZXmOrEuxFFYhehoQIw/Cs5WZAwCQ06aw3ju-mYHTQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" SemanticSelectorArgument="Text indicating the total number of search results and how many are currently displayed" Version="V6" WaitForReadyArgument="None" />
-                      </uix:NCheckState.Target>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </uix:NCheckState>
                   </Sequence>
-                  <Sequence DisplayName="Wait For Instrument Page" sap:VirtualizedContainerService.HintSize="502.4,56.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za walidację, czy instrument zwrócony przez stronę&#xD;&#xA;internetową odpowiada oczekiwanej spółce przekazanej w danych transakcji.&#xD;&#xA;W przypadku niezgodności zgłaszany jest BusinessRuleException, co powoduje pominięcie bieżącej transakcji i przejście do kolejnej." DisplayName="Validate Instrument Identity" sap:VirtualizedContainerService.HintSize="484.8,167.2" sap2010:WorkflowViewState.IdRef="Sequence_67">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NCheckState sap2010:Annotation.AnnotationText="Sprawdzenie, czy strona szczegółowa instrumentu giełdowego została poprawnie załadowana i jest gotowa do dalszego przetwarzania." DisplayName="Check Instrument Page Loaded" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Timeout="10" Version="V5">
-                      <uix:NCheckState.IfExists>
-                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,270.4" sap2010:WorkflowViewState.IdRef="Sequence_34">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:LogMessage sap2010:Annotation.AnnotationText="Potwierdzenie poprawnego załadowania strony instrumentu giełdowego." DisplayName="Instrument Page Ready" sap:VirtualizedContainerService.HintSize="416,210.4" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;[PERFORMER] Instrument page loaded | StockCode=&quot; &amp; stockCode]">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:LogMessage>
-                        </Sequence>
-                      </uix:NCheckState.IfExists>
-                      <uix:NCheckState.IfNotExists>
-                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,251.2" sap2010:WorkflowViewState.IdRef="Sequence_35">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Throw sap2010:Annotation.AnnotationText="Strona instrumentu giełdowego nie została załadowana w oczekiwanym czasie. Sytuacja traktowana jako błąd techniczny umożliwiający ponowną próbę w ramach mechanizmu retry." Exception="[New SystemException(&quot;Instrument page did not load correctly for StockCode=&quot; &amp; stockCode&#xD;&#xA;)]" sap:VirtualizedContainerService.HintSize="416,191.2" sap2010:WorkflowViewState.IdRef="Throw_4">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Throw>
-                        </Sequence>
-                      </uix:NCheckState.IfNotExists>
-                      <uix:NCheckState.Target>
-                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="ece5279f-6dea-4d88-a7b6-8b5b25aa49f5" ContentHash="rOQosOnGjEOm1KD0IxbiaA" DesignTimeRectangle="245, 309, 1430, 75" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='breadcrumb' tag='DIV' /&gt;" Guid="6a7a3c6c-0d2c-43d6-9f07-eaee23348054" InformativeScreenshot="68d845f9940abbbed75aaf22debb4cae.png" Reference="DiCvZXmOrEuxFFYhehoQIw/BOmWhIn6qEKgbxMmJQiv_w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                      </uix:NCheckState.Target>
+                    <uix:NGetText sap2010:Annotation.AnnotationText="Pobiera nazwę spółki wyświetlaną w pierwszym wyniku wyszukiwania na stronie London Stock Exchange w celu dalszej walidacji biznesowej." DisplayName="Get Company Name from First Search Result" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="NGetText_16" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[firstResultCompanyData]" Version="V5">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="31569476-f492-4603-8286-7b8d130e8291" ContentHash="5eIvxF9B_kOaRVR4CIj0YA" DesignTimeRectangle="245, 490, 1430, 114" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='*item-container*' /&gt;" Guid="472b6e4a-d103-4b7d-a05f-f2c4ed3d3bc7" InformativeScreenshot="7a903734d811016f4c87b6e9a5ecd4c2.png" Reference="DiCvZXmOrEuxFFYhehoQIw/wLRFSD_26Ee6wrAHUIWX1A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='hsba - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                      </uix:NGetText.Target>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -564,83 +493,124 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                    </uix:NCheckState>
-                  </Sequence>
-                  <Sequence DisplayName="Extract Stock Value" sap:VirtualizedContainerService.HintSize="502.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <uix:NCheckState sap2010:Annotation.AnnotationText="Sprawdzenie obecności elementu interfejsu zawierającego aktualną wartość instrumentu giełdowego przed próbą odczytu danych." DisplayName="Check Stock Price Element Exists" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="468.8,1144" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
-                      <uix:NCheckState.IfExists>
-                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="467.2,567.2" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    </uix:NGetText>
+                    <If sap2010:Annotation.AnnotationText="Sprawdza, czy nazwa spółki pobrana ze strony zawiera oczekiwaną nazwę spółki z danych transakcji (bez uwzględniania wielkości liter).&#xD;&#xA;Zapobiega przetwarzaniu błędnych instrumentów.&#xD;&#xA;" Condition="[Not firstResultCompanyData.Contains(companyName)]" DisplayName="Check Company Name Matching" sap:VirtualizedContainerService.HintSize="416,141.6" sap2010:WorkflowViewState.IdRef="If_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,218.4" sap2010:WorkflowViewState.IdRef="Sequence_70">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <uix:NGetText sap2010:Annotation.AnnotationText="Pobranie surowej wartości ceny instrumentu giełdowego z interfejsu użytkownika." DisplayName="Extract Raw Stock Price" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="433.6,183.2" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[rawStockPrice]" Version="V5">
-                            <uix:NGetText.Target>
-                              <uix:TargetAnchorable BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="6b20b386-e4ed-400d-9e5c-5d669a28d3c7" ContentHash="8vpMIpvmIEGLiKlIWHgFFg" DesignTimeRectangle="245, 939, 117, 62" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='price-tag' parentid='ticker' tag='SPAN' /&gt;" Guid="781f0d5f-ef9b-4389-ab79-60043bc167b1" InformativeScreenshot="4d50c13c3cc912b2c082c19a546b11be.png" Reference="DiCvZXmOrEuxFFYhehoQIw/a-OjsH8j40K9bUl5tgBbdw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                            </uix:NGetText.Target>
+                          <Throw sap2010:Annotation.AnnotationText="Zgłasza wyjątek biznesowy informujący o niezgodności nazwy spółki. REFramework oznaczy transakcję jako Business Exception i przejdzie do następnej transakcji bez podejmowania ponownych prób.&#xD;&#xA;" DisplayName="Company Name Mismatch" Exception="[New BusinessRuleException(&quot;Company name mismatch. Expected: &quot; &amp; companyName &amp;&#xD;&#xA;        &quot; | Found: &quot; &amp; firstResultCompanyData&#xD;&#xA;    )]" sap:VirtualizedContainerService.HintSize="416,158.4" sap2010:WorkflowViewState.IdRef="Throw_8">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </uix:NGetText>
-                          <Assign sap2010:Annotation.AnnotationText="Utrwalenie znacznika czasu UTC odpowiadającego momentowi pozyskania ceny instrumentu giełdowego." DisplayName="Capture Price Timestamp (UTC)" sap:VirtualizedContainerService.HintSize="433.6,158.4" sap2010:WorkflowViewState.IdRef="Assign_5">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="s:DateTime">[priceTimestampUtc]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="s:DateTime">[Now.ToUniversalTime]</InArgument>
-                            </Assign.Value>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Assign>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;[PERFORMER] Stock price extracted | StockCode=&quot; &amp; stockCode &amp;&#xD;&#xA;&quot; | Price=&quot; &amp; rawStockPrice  &amp;&#xD;&#xA;&quot; | TimestampUtc=&quot; &amp; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)]" />
-                        </Sequence>
-                      </uix:NCheckState.IfExists>
-                      <uix:NCheckState.IfNotExists>
-                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="467.2,251.2" sap2010:WorkflowViewState.IdRef="Sequence_37">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Throw sap2010:Annotation.AnnotationText="Brak elementu interfejsu zawierającego cenę instrumentu giełdowego. Sytuacja traktowana jako błąd techniczny umożliwiający ponowną próbę w ramach mechanizmu retry." DisplayName="Stock Price Not Found" Exception="[New SystemException(&quot;Stock price element not found on instrument page for StockCode=&quot; &amp; stockCode&#xD;&#xA;)]" sap:VirtualizedContainerService.HintSize="416,191.2" sap2010:WorkflowViewState.IdRef="Throw_5">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </Throw>
                         </Sequence>
-                      </uix:NCheckState.IfNotExists>
-                      <uix:NCheckState.Target>
-                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com/stock/VOD/vodafone-group-plc/company-page" CVScreenId="cd2195ab-fbf3-40ea-af1b-b76d092af969" ContentHash="I_xSFIUgbkmwj8A0_G4nfA" DesignTimeRectangle="245, 939, 117, 62" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl class='price-tag' parentid='ticker' tag='SPAN' type='' aaname='97.26 ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='97.26' /&gt;" Guid="248c8b3e-d749-4542-b42e-85046e224c4f" InformativeScreenshot="e87bdb3c6a51442f4306d8219ccd2413.png" Reference="DiCvZXmOrEuxFFYhehoQIw/xuP8FbzpdEKdRvADyZ_dHw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='VODAFONE GROUP PLC VOD Stock | London Stock Exchange' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                          <uix:TargetAnchorable.Anchors>
-                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                              <uix:Target CVScreenId="cd2195ab-fbf3-40ea-af1b-b76d092af969" DesignTimeRectangle="245, 923, 318, 17" FuzzySelectorArgument="&lt;webctrl aaname='Price ' parentid='ticker' tag='DIV' type='' class='currency-label small-font-size item-label' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Price (GBX)' /&gt;" Guid="61c4be8c-b0dc-464a-9d67-84c379affc7a" SearchSteps="FuzzySelector" />
-                            </scg:List>
-                          </uix:TargetAnchorable.Anchors>
-                        </uix:TargetAnchorable>
-                      </uix:NCheckState.Target>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za pobranie aktualnej wartości ceny instrumentu&#xD;&#xA;giełdowego z interfejsu użytkownika, jej przetworzenie do postaci&#xD;&#xA;liczbowej oraz zapisanie znacznika czasu UTC dla celów audytowych." DisplayName="Extract Stock Value" sap:VirtualizedContainerService.HintSize="484.8,117.6" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NGetText sap2010:Annotation.AnnotationText="Pobiera surową wartość ceny instrumentu giełdowego z interfejsu strony internetowej. Zwracany tekst może zawierać dodatkowe informacje takie jak waluta, zmiana procentowa lub dane sektorowe." DisplayName="Extract Raw Stock Price" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,150.4" sap2010:WorkflowViewState.IdRef="NGetText_14" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[rawStockPrice]" Version="V5">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="7d6283c7-68bc-4011-a178-1760de2f6c49" ContentHash="CiBW2qm8jESvTzEWRpxVvw" DesignTimeRectangle="245, 681, 1430, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='*bottom-info-container*' /&gt;" Guid="911d6d4a-5dd4-4d9e-bfee-52c3c6f35aa9" InformativeScreenshot="ef62d3ebda794b5a714367bda9c2a306.png" Reference="DiCvZXmOrEuxFFYhehoQIw/GL-oVfundUWlvVfa5u1orQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='BT.A - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                      </uix:NGetText.Target>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                    </uix:NCheckState>
+                    </uix:NGetText>
+                    <Assign sap2010:Annotation.AnnotationText="Wyodrębnia właściwą wartość ceny instrumentu giełdowego z surowego tekstu przy użyciu wyrażenia regularnego. Logika opiera się na występowaniu stałego znacznika waluty (GBX) po wartości ceny.&#xD;&#xA;" DisplayName="Parse Stock Price Using Regex" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="Assign_13">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[regExPrice]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.Text.RegularExpressions.Regex.Match(
+    rawStockPrice,
+    "^\s*([\d,]+\.\d{2})\s*GBX"
+).Groups(1).Value]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <Assign sap2010:Annotation.AnnotationText="Utrwalenie znacznika czasu UTC odpowiadającego momentowi pozyskania ceny instrumentu giełdowego." DisplayName="Capture Price Timestamp (UTC)" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Assign_14">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="s:DateTime">[priceTimestampUtc]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="s:DateTime">[Now.ToUniversalTime]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <ui:LogMessage sap2010:Annotation.AnnotationText="Rejestruje w logach szczegóły dotyczące pobranej ceny instrumentu, w tym kod instrumentu, wartość ceny oraz znacznik czasu UTC. Log wykorzystywany jest do celów diagnostycznych i audytowych.&#xD;&#xA;" DisplayName="Log Extracted Stock Price" sap:VirtualizedContainerService.HintSize="416,158.4" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;[PERFORMER] Stock price extracted | StockCode=&quot; &amp; stockCode &amp;&#xD;&#xA;&quot; | Price=&quot; &amp; regExPrice  &amp;&#xD;&#xA;&quot; | TimestampUtc=&quot; &amp; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
                   </Sequence>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,342.4" sap2010:WorkflowViewState.IdRef="CommentOut_26">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,240.8" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Go To Home Page(Next Iteration)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,180.8" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" ContentHash="qp4COR_eI0KkXZ1JtYhTAg" DesignTimeRectangle="245, 245, 225, 94" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='IMG' /&gt;" Guid="70f235ab-0f97-438b-a9aa-2c8a44987b24" InformativeScreenshot="b0f690120a5163e0c1d16a9965076996.png" Reference="DiCvZXmOrEuxFFYhehoQIw/jwwZNPqYL0ymWzDQ84z9vg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
                 </Sequence>
               </Sequence>
             </ActivityAction>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="CQDWKdhiPEix0FahkoP0KQ" Reference="DiCvZXmOrEuxFFYhehoQIw/JZgylZKFLkGrg8nUZMNa2A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="5XRJPUJn606ANYmHsh8QwQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com" CVScreenId="8f899b48-8efb-48e3-9b1e-95b302107e5a" DesignTimeRectangle="1115, 97, 336, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='quick-search-input' tag='INPUT' /&gt;" Guid="64da4c8a-e112-45bb-a208-00e485c9785f" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" DesignTimeRectangle="805, 185, 870, 63" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='search' tag='INPUT' /&gt;" Guid="c28529b5-24ed-4fa8-82f3-d39873a6ccfa" ScopeSelectorArgument="&lt;html app='msedge.exe' title='hsbc - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="cc75ad50ff2a2e2617e06098ad58a3ca.png" xmlns="">0WQalsukKdEaxnJVY-siPfA</imageRef>
+    </TargetAnchorable>
     <x:String x:Key="ActivityType">Click</x:String>
   </ObjectRepositoryTargetData.Data>
 </ObjectRepositoryTargetData>

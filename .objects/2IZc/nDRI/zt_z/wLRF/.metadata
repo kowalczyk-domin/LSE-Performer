@@ -1,0 +1,14 @@
+﻿{
+  "Name": "HSBC HOLDINGS PLC",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "wLRFSD_26Ee6wrAHUIWX1A",
+  "Reference": "DiCvZXmOrEuxFFYhehoQIw/wLRFSD_26Ee6wrAHUIWX1A",
+  "ParentRef": "DiCvZXmOrEuxFFYhehoQIw/zt_zgNtEVEGcgw9Gd0FSZQ",
+  "Created": "2025-12-25T15:47:13.0821737Z",
+  "Updated": "2025-12-25T15:47:13.0821737Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.22.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

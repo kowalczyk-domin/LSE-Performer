@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="AEVl57naL0iwoVJYPpoXKQ" Reference="DiCvZXmOrEuxFFYhehoQIw/Cs5WZAwCQ06aw3ju-mYHTQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="A6epGROuK0eOI75XlQibWQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="a300b296-db34-4cef-b8db-4dc11c484c92" DesignTimeRectangle="307, 312, 179, 52" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;app-handshake&amp;gt;div&amp;gt;app-page-content&amp;gt;app-search&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='global-search' tag='DIV' /&gt;" Guid="625cd118-106f-4eab-92fb-19dab5284fc5" ScopeSelectorArgument="&lt;html app='msedge.exe' title='vod - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" SemanticSelectorArgument="Text indicating the total number of search results and how many are currently displayed" Version="V6" WaitForReadyArgument="None">
-      <imageRef attrName="InformativeScreenshot" originalValue="be08883cb1cd3201c18738ab200d9faf.png" xmlns="">0bgLx2KyzY0umhkRzTZatog</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="londonstockexchange.com/search" CVScreenId="2823788d-d452-4291-a18f-f7191734c0d4" DesignTimeRectangle="498, 312, 131, 28" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-label='Instrument' tag='A' /&gt;" Guid="4483d543-07ba-4345-b5f6-09ebcd27c3fc" ScopeSelectorArgument="&lt;html app='msedge.exe' title='non - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="898ab8abc1ad724dfc51e25c57425fdc.png" xmlns="">0BDRnUhxkxEqWGEFCQ4VqFQ</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">CheckState</x:String>
   </ObjectRepositoryTargetData.Data>

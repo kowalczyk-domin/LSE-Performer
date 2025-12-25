@@ -102,15 +102,15 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="861,1173.6566666666668" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="838,936.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <Sequence sap2010:Annotation.AnnotationText="Przygotowanie i zainicjalizowanie zasobów aplikacyjnych wymaganych do przetwarzania transakcji, w tym stabilnej sesji przeglądarki." DisplayName="Initialize Browser Session" sap:VirtualizedContainerService.HintSize="486,710" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <Sequence sap2010:Annotation.AnnotationText="Przygotowanie i zainicjalizowanie zasobów aplikacyjnych wymaganych do przetwarzania transakcji, w tym stabilnej sesji przeglądarki." DisplayName="Initialize Browser Session" sap:VirtualizedContainerService.HintSize="484.8,708" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -118,14 +118,14 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu inicjalizacji sesji przeglądarki." DisplayName="Log Browser Initialization Start" sap:VirtualizedContainerService.HintSize="452,220" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[INIT] Initializing browser session&quot;]">
+      <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu inicjalizacji sesji przeglądarki." DisplayName="Log Browser Initialization Start" sap:VirtualizedContainerService.HintSize="451.2,219.2" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[INIT] Initializing browser session&quot;]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
-      <uix:NApplicationCard sap2010:Annotation.AnnotationText="Otwarcie nowej sesji przeglądarki w celu dalszego wykorzystania w procesie przetwarzania transakcji." AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,269" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="Always" OutUiElement="[out_BrowserSession]" ScopeGuid="216e4951-1d19-4ceb-ae9a-cff7555621f3" Timeout="30" UserDataFolderMode="[UiPath.UIAutomationNext.Enums.BrowserUserDataFolderMode.Automatic]" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard sap2010:Annotation.AnnotationText="Otwarcie nowej sesji przeglądarki w celu dalszego wykorzystania w procesie przetwarzania transakcji." AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,268" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" OutUiElement="[out_BrowserSession]" ScopeGuid="216e4951-1d19-4ceb-ae9a-cff7555621f3" Timeout="30" UserDataFolderMode="[UiPath.UIAutomationNext.Enums.BrowserUserDataFolderMode.Automatic]" Version="V2" WindowResize="Maximize">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
@@ -164,7 +164,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
-      <ui:LogMessage sap2010:Annotation.AnnotationText="Potwierdzenie poprawnego zakończenia inicjalizacji sesji przeglądarki." DisplayName="Log Browser Initialization Completed" sap:VirtualizedContainerService.HintSize="452,93" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;[INIT] Browser session initialized | Url=&quot; &amp; in_Config(&quot;LSE_BaseUrl&quot;).ToString]">
+      <ui:LogMessage sap2010:Annotation.AnnotationText="Potwierdzenie poprawnego zakończenia inicjalizacji sesji przeglądarki." DisplayName="Log Browser Initialization Completed" sap:VirtualizedContainerService.HintSize="451.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;[INIT] Browser session initialized | Url=&quot; &amp; in_Config(&quot;LSE_BaseUrl&quot;).ToString]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
