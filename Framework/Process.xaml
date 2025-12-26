@@ -137,7 +137,7 @@
       <AssemblyReference>System.Data.Common</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="856,2170" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="857,2465" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="sourceRef" />
       <Variable x:TypeArguments="x:String" Name="stockCode" />
@@ -155,15 +155,15 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="588,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <Sequence DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="588,1895" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="606,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <Sequence DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="606,2190" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wyodrębnienie danych biznesowych z elementu kolejki (Queue Item) oraz przygotowanie lokalnego kontekstu transakcji do dalszego przetwarzania." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="554,118" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wyodrębnienie danych biznesowych z elementu kolejki (Queue Item) oraz przygotowanie lokalnego kontekstu transakcji do dalszego przetwarzania." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="572,118" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -241,7 +241,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za walidację kompletności i poprawności danych biznesowych transakcji przed rozpoczęciem przetwarzania." DisplayName="Validate Transaction Data" sap:VirtualizedContainerService.HintSize="554,102" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za walidację kompletności i poprawności danych biznesowych transakcji przed rozpoczęciem przetwarzania." DisplayName="Validate Transaction Data" sap:VirtualizedContainerService.HintSize="572,102" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -296,7 +296,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za techniczne pozyskanie aktualnej wartości instrumentu giełdowego na podstawie kodu akcji. Obejmuje nawigację, wyszukiwanie oraz ekstrakcję danych z serwisu giełdowego." DisplayName="Acquire Stock Data" sap:VirtualizedContainerService.HintSize="554,1483" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za techniczne pozyskanie aktualnej wartości instrumentu giełdowego na podstawie kodu akcji. Obejmuje nawigację, wyszukiwanie oraz ekstrakcję danych z serwisu giełdowego." DisplayName="Acquire Stock Data" sap:VirtualizedContainerService.HintSize="572,1778" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -304,7 +304,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu procesu pozyskiwania danych giełdowych dla aktualnej &#xA;transakcji." DisplayName="Log Stock Data Acquisition Start" sap:VirtualizedContainerService.HintSize="520,118" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;[PERFORMER] Acquiring stock data | StockCode=&quot; &amp; stockCode]">
+        <ui:LogMessage sap2010:Annotation.AnnotationText="Log informujący o rozpoczęciu procesu pozyskiwania danych giełdowych dla aktualnej &#xA;transakcji." DisplayName="Log Stock Data Acquisition Start" sap:VirtualizedContainerService.HintSize="538,118" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;[PERFORMER] Acquiring stock data | StockCode=&quot; &amp; stockCode]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -313,19 +313,19 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
-        <uix:NApplicationCard sap2010:Annotation.AnnotationText="Wykorzystanie wcześniej zainicjalizowanej sesji przeglądarki do wykonania operacji wyszukiwania oraz ekstrakcji danych giełdowych." AttachMode="SingleWindow" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Use Existing Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,1212" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InUiElement="[in_BrowserSession]" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V2" WindowResize="Maximize">
+        <uix:NApplicationCard sap2010:Annotation.AnnotationText="Wykorzystanie wcześniej zainicjalizowanej sesji przeglądarki do wykonania operacji wyszukiwania oraz ekstrakcji danych giełdowych." AttachMode="SingleWindow" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Use Existing Browser Session" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="538,1507" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InUiElement="[in_BrowserSession]" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" Version="V2" WindowResize="Maximize">
           <uix:NApplicationCard.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518,1045" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="536,1340" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="Kontener logiczny grupujący wszystkie operacje webowe wykonywane w ramach jednej sesji przeglądarki." DisplayName="Execute Stock Data Acquisition" sap:VirtualizedContainerService.HintSize="484,985" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <Sequence sap2010:Annotation.AnnotationText="Kontener logiczny grupujący wszystkie operacje webowe wykonywane w ramach jednej sesji przeglądarki." DisplayName="Execute Stock Data Acquisition" sap:VirtualizedContainerService.HintSize="502,1280" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -333,7 +333,7 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wykrycie oraz zamknięcie banera cookies, jeżeli jest on wyświetlany, w celu odblokowania interfejsu strony." DisplayName="Handle Cookie Banner" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                  <Sequence sap2010:Annotation.AnnotationText="Sekcja odpowiedzialna za wykrycie oraz zamknięcie banera cookies, jeżeli jest on wyświetlany, w celu odblokowania interfejsu strony." DisplayName="Handle Cookie Banner" sap:VirtualizedContainerService.HintSize="468,102" sap2010:WorkflowViewState.IdRef="Sequence_60">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -385,7 +385,7 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NCheckState>
                   </Sequence>
-                  <Sequence sap2010:Annotation.AnnotationText="Wyszukanie instrumentu giełdowego na podstawie kodu akcji oraz nazwy spółki i przejście do strony właściwego instrumentu." DisplayName="Search Instrument   " sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <Sequence sap2010:Annotation.AnnotationText="Wyszukanie instrumentu giełdowego na podstawie kodu akcji oraz nazwy spółki i przejście do strony właściwego instrumentu." DisplayName="Search Instrument   " sap:VirtualizedContainerService.HintSize="468,102" sap2010:WorkflowViewState.IdRef="Sequence_16">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -505,10 +505,10 @@
                       </If.Else>
                     </If>
                   </Sequence>
-                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za walidację, czy instrument zwrócony przez stronę&#xA;internetową odpowiada oczekiwanej spółce przekazanej w danych transakcji.&#xA;W przypadku niezgodności zgłaszany jest BusinessRuleException, co powoduje pominięcie bieżącej transakcji i przejście do kolejnej." DisplayName="Validate Instrument Identity" sap:VirtualizedContainerService.HintSize="450,544" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za walidację, czy instrument zwrócony przez stronę&#xA;internetową odpowiada oczekiwanej spółce przekazanej w danych transakcji.&#xA;W przypadku niezgodności zgłaszany jest BusinessRuleException, co powoduje pominięcie bieżącej transakcji i przejście do kolejnej." DisplayName="Validate Instrument Identity" sap:VirtualizedContainerService.HintSize="468,167" sap2010:WorkflowViewState.IdRef="Sequence_67">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
@@ -546,7 +546,7 @@
                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xD;&#xA; &quot;Undetected Data&quot;,&#xD;&#xA; &quot;Undetected Data&quot;,&#xD;&#xA; &quot;Undetected Data&quot;,&#xD;&#xA; &quot;Undetected Data&quot;,&#xD;&#xA; batchId&#xD;&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="416,282" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xA; &quot;Undetected Data&quot;,&#xA; &quot;Undetected Data&quot;,&#xA; &quot;Undetected Data&quot;,&#xA; &quot;Undetected Data&quot;,&#xA; batchId&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="416,282" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -593,7 +593,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xD;&#xA; &quot;Company Name Mismatch&quot;,&#xD;&#xA; &quot;Company Name Mismatch&quot;,&#xD;&#xA; &quot;Company Name Mismatch&quot;,&#xD;&#xA; &quot;Company Name Mismatch&quot;,&#xD;&#xA; batchId&#xD;&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="416,282" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xA; &quot;Company Name Mismatch&quot;,&#xA; &quot;Company Name Mismatch&quot;,&#xA; &quot;Company Name Mismatch&quot;,&#xA; &quot;Company Name Mismatch&quot;,&#xA; batchId&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="416,282" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -625,15 +625,15 @@
                       </If.Else>
                     </If>
                   </Sequence>
-                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za pobranie aktualnej wartości ceny instrumentu&#xA;giełdowego z interfejsu użytkownika, jej przetworzenie do postaci&#xA;liczbowej oraz zapisanie znacznika czasu UTC dla celów audytowych." DisplayName="Extract Stock Value" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                  <Sequence sap2010:Annotation.AnnotationText="Sekwencja odpowiada za pobranie aktualnej wartości ceny instrumentu&#xA;giełdowego z interfejsu użytkownika, jej przetworzenie do postaci&#xA;liczbowej oraz zapisanie znacznika czasu UTC dla celów audytowych." DisplayName="Extract Stock Value" sap:VirtualizedContainerService.HintSize="468,781" sap2010:WorkflowViewState.IdRef="Sequence_62">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NGetText sap2010:Annotation.AnnotationText="Pobiera surową wartość ceny instrumentu giełdowego z interfejsu strony internetowej. Zwracany tekst może zawierać dodatkowe informacje takie jak waluta, zmiana procentowa lub dane sektorowe." DisplayName="Extract Raw Stock Price" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,151" sap2010:WorkflowViewState.IdRef="NGetText_14" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[rawStockPrice]" Version="V5">
+                    <uix:NGetText sap2010:Annotation.AnnotationText="Pobiera surową wartość ceny instrumentu giełdowego z interfejsu strony internetowej. Zwracany tekst może zawierać dodatkowe informacje takie jak waluta, zmiana procentowa lub dane sektorowe." DisplayName="Extract Raw Stock Price" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,151" sap2010:WorkflowViewState.IdRef="NGetText_14" ScopeIdentifier="e1f727f0-307a-4aa9-bd49-d5c60d1de69d" TextString="[rawStockPrice]" Version="V5">
                       <uix:NGetText.Target>
                         <uix:TargetAnchorable BrowserURL="londonstockexchange.com/search" CVScreenId="7d6283c7-68bc-4011-a178-1760de2f6c49" ContentHash="CiBW2qm8jESvTzEWRpxVvw" DesignTimeRectangle="245, 681, 1430, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='*bottom-info-container*' /&gt;" Guid="911d6d4a-5dd4-4d9e-bfee-52c3c6f35aa9" InformativeScreenshot="ef62d3ebda794b5a714367bda9c2a306.png" Reference="DiCvZXmOrEuxFFYhehoQIw/GL-oVfundUWlvVfa5u1orQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='BT.A - Search | London Stock Exchange' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
                       </uix:NGetText.Target>
@@ -645,7 +645,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NGetText>
-                    <Assign sap2010:Annotation.AnnotationText="Wyodrębnia właściwą wartość ceny instrumentu giełdowego z surowego tekstu przy użyciu wyrażenia regularnego. Logika opiera się na występowaniu stałego znacznika waluty (GBX) po wartości ceny.&#xA;" DisplayName="Parse Stock Price Using Regex" sap:VirtualizedContainerService.HintSize="416,167" sap2010:WorkflowViewState.IdRef="Assign_13">
+                    <Assign sap2010:Annotation.AnnotationText="Wyodrębnia właściwą wartość ceny instrumentu giełdowego z surowego tekstu przy użyciu wyrażenia regularnego. Logika opiera się na występowaniu stałego znacznika waluty (GBX) po wartości ceny.&#xA;" DisplayName="Parse Stock Price Using Regex" sap:VirtualizedContainerService.HintSize="434,210" sap2010:WorkflowViewState.IdRef="Assign_13">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[regExPrice]</OutArgument>
                       </Assign.To>
@@ -653,17 +653,17 @@
                         <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.Text.RegularExpressions.Regex.Match(
     rawStockPrice,
     "^\s*([\d,]+\.\d{2})\s*GBX"
-).Groups(1).Value]</InArgument>
+).Groups(1).Value.Replace(",", "")]</InArgument>
                       </Assign.Value>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <Assign sap2010:Annotation.AnnotationText="Utrwalenie znacznika czasu UTC odpowiadającego momentowi pozyskania ceny instrumentu giełdowego." DisplayName="Capture Price Timestamp (UTC)" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign sap2010:Annotation.AnnotationText="Utrwalenie znacznika czasu UTC odpowiadającego momentowi pozyskania ceny instrumentu giełdowego." DisplayName="Capture Price Timestamp (UTC)" sap:VirtualizedContainerService.HintSize="434,118" sap2010:WorkflowViewState.IdRef="Assign_14">
                       <Assign.To>
                         <OutArgument x:TypeArguments="s:DateTime">[priceTimestampUtc]</OutArgument>
                       </Assign.To>
@@ -678,7 +678,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:LogMessage sap2010:Annotation.AnnotationText="Rejestruje w logach szczegóły dotyczące pobranej ceny instrumentu, w tym kod instrumentu, wartość ceny oraz znacznik czasu UTC. Log wykorzystywany jest do celów diagnostycznych i audytowych.&#xA;" DisplayName="Log Extracted Stock Price" sap:VirtualizedContainerService.HintSize="416,158.4" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;[PERFORMER] Stock price extracted | StockCode=&quot; &amp; stockCode &amp;&#xA;&quot; | Price=&quot; &amp; regExPrice  &amp;&#xA;&quot; | TimestampUtc=&quot; &amp; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)]">
+                    <ui:LogMessage sap2010:Annotation.AnnotationText="Rejestruje w logach szczegóły dotyczące pobranej ceny instrumentu, w tym kod instrumentu, wartość ceny oraz znacznik czasu UTC. Log wykorzystywany jest do celów diagnostycznych i audytowych.&#xA;" DisplayName="Log Extracted Stock Price" sap:VirtualizedContainerService.HintSize="434,158" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;[PERFORMER] Stock price extracted | StockCode=&quot; &amp; stockCode &amp;&#xA;&quot; | Price=&quot; &amp; regExPrice  &amp;&#xA;&quot; | TimestampUtc=&quot; &amp; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)]">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -727,7 +727,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </uix:NApplicationCard>
       </Sequence>
-      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xD;&#xA; companyName,&#xD;&#xA; stockCode,&#xD;&#xA; regExPrice,&#xD;&#xA; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;),&#xD;&#xA; batchId&#xD;&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="554,109" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Dodanie pojedynczego rekordu z wynikiem przetwarzania transakcji do tabeli wynikowej przed zapisem do pliku CSV." ArrayRow="[New Object() {&#xA; companyName,&#xA; stockCode,&#xA; regExPrice,&#xA; priceTimestampUtc.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;),&#xA; batchId&#xA;}]" DataTable="[inOut_dtResult]" DisplayName="Add Result Row" sap:VirtualizedContainerService.HintSize="572,109" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
